@@ -65,15 +65,15 @@ if __name__ == "__main__":
         download_cover_url.append(root_url+video_cover_url)
         desc = "课程编号：%s\n课程名称：%s\n视频序列：%s\n视频ID：%s\n视频标题：%s\n视频主讲：%s\n创建时间：%s\n视频时长：%s\n"%(item_data['coursesNo'], item_data['coursesName'], str(item_data['sortNumber']), str(videoId), videoTitle, str(item_data['videoSpeaker']), item_data['videoCreateTimeTip'], str(item_data['videoPeriodTip']))
         download_desc.append(desc)
-    i = 0
+    # i = 0
     for (dtitle,did,cname,curl,vdesc) in zip(download_title,download_id,download_cover_name,download_cover_url,download_desc):
         print(dtitle)
         dtitle_r=re.sub(r'[\\/:*?"<>|\r\n]+', "_", dtitle)
         dpath = ddir+'/'+str(dtitle_r)+'.mp4'
         durl = 'https://video.cmet.ustc.edu.cn/upload/video/'+str(did)+'/'+str(did)+'.mp4'
-        if i > 12:
-            wget.download(durl,dpath)
-        i += 1
+        # if i > 12:
+        wget.download(durl,dpath)
+        # i += 1
         wget.download(curl,ddir+'/'+cname)
         with open(ddir+'/'+did + ' ' + str(dtitle_r)+'.txt','w',encoding='utf8')as df:
             df.write(vdesc)
